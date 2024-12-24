@@ -52,27 +52,26 @@ export default function Register() {
     <>
       <img
         src={LoginPage}
-        className="w-full h-full fixed top-0 left-0 max-lg:hidden object-cover object-bottom"
+        className="w-full h-full fixed top-0 left-0 max-lg:hidden object-cover object-bottom blur-sm"
         alt=""
       />
-      <div className="w-full h-screen grid grid-cols-2 z-10 relative">
-        <div className="flex flex-col justify-center p-8">
-          <img src={LoginIlustrasi} alt="" className="w-[600px]" />
-          <div>
-            <img src={LoginCoder} alt="" className="h-14" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center flex-col">
-          <img src={LoginCoder} alt="" className="h-14 mb-8 md:hidden" />
+      <div className="w-full h-screen flex justify-center items-center z-10 relative">
+        <div className="flex flex-col justify-center items-center p-8 bg-gray-800 rounded-lg shadow-lg to-transparent">
+          {/* Logo */}
+          {/* <img src={LoginCoder} alt="Logo" className="h-14 mb-8" /> */}
+
+          {/* Title */}
           <p className="text-white font-bold text-3xl text-center">
-            WAOW <span className="font-medium ms-2">Register</span>
+            Welcome, Sales Direct <span className="font-medium ms-2"></span>
           </p>
-          <form onSubmit={Submit} className="w-[450px] mt-5 ">
-            <div className="grid grid-cols-2 my-6 gap-5">
+
+          {/* Form */}
+          <form onSubmit={Submit} className="w-[400px] mt-5">
+            {/* Name Fields */}
+            <div className="grid grid-cols-2 gap-5 my-6">
               <Input
                 error={Respond.error?.first_name?.[0] ?? ""}
                 value={Values.first_name}
-                active
                 onInput={(e) => handleChange("first_name", e.target.value)}
                 placeholder={"First Name"}
               />
@@ -83,6 +82,8 @@ export default function Register() {
                 placeholder={"Last Name"}
               />
             </div>
+
+            {/* Email Field */}
             <Input
               error={Respond.error?.email?.[0] ?? ""}
               className={"my-6"}
@@ -91,9 +92,10 @@ export default function Register() {
               icon={"solar:letter-broken"}
               placeholder={"Email"}
             />
+
+            {/* Phone Number Field */}
             <Input
               error={Respond.error?.phone_number?.[0] ?? ""}
-              active
               className={"my-6"}
               value={Values.phone_number}
               onInput={(e) => handleChange("phone_number", e.target.value)}
@@ -101,6 +103,8 @@ export default function Register() {
               placeholder={"Phone Number"}
               typeInput="number"
             />
+
+            {/* Password Field */}
             <Input
               error={Respond.error?.password?.[0] ?? ""}
               className={"my-6"}
@@ -111,9 +115,11 @@ export default function Register() {
               icon={Psw ? "solar:eye-broken" : "solar:eye-closed-broken"}
               placeholder={"Password"}
             />
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-10/12 bg-white text-primary py-3 px-4 rounded-full mx-auto mt-24 flex justify-center items-center gap-1"
+              className="w-full bg-white text-primary py-3 px-4 rounded-full mx-auto mt-10 flex justify-center items-center gap-1"
             >
               <span className="text-lg font-semibold">Register</span>
               <Icon
@@ -121,8 +127,10 @@ export default function Register() {
                 className="text-2xl"
               />
             </button>
+
+            {/* Login Link */}
             <p className="text-center mt-6 text-white text-[15px]">
-              Have an Account?{" "}
+              Already have an account?{" "}
               <Link to={"/login"} className="font-semibold">
                 Login
               </Link>

@@ -1,5 +1,6 @@
 import LoginPage from "../assets/backround.png";
 import LoginCoder from "../assets/logo_coder.png";
+import LoginCoder2 from "../assets/layersLogis.png";
 import LoginIlustrasi from "../assets/ilustrasi.png";
 import { Button, Checkbox, Flex } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -50,10 +51,11 @@ export default function login() {
         alt=""
       />
       <div className="w-full h-screen flex justify-center items-center z-10 relative">
-        <div className="flex flex-col justify-center items-center p-8 bg-gray-800 rounded-lg shadow-lg">
-          <img src={LoginCoder} alt="Logo" className="h-14 mb-8" />
+        <div className="flex flex-col justify-center items-center p-8 bg-gray-800 rounded-lg shadow-lg to-transparent">
+          <img src={LoginCoder2} alt="Logo" className="h-14 mb-8" />
           <p className="text-white font-bold text-3xl text-center">
-            Sales Direct<span className="font-medium ms-2">Log-In</span>
+            Welcome, Sales Direct
+            <span className="font-medium ms-2"></span>
           </p>
           <form onSubmit={Submit} className="w-[400px] mt-5">
             <Input

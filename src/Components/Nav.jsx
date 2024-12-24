@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import Logo from "../assets/Logoicons.svg";
-import { Button, Dropdown, Flex } from "antd";
+import { Button, Dropdown } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react";
 import LogoutController, { AuthController } from "../Controller/User";
@@ -45,59 +45,61 @@ export default function Navbar({ className }) {
 
   return (
     <nav
-      className={`w-11/12 mx-auto py-2 flex justify-between items-center z-20 relative ${className}`}
+      className={`w-full bg-gray-800 px-6 py-4 flex justify-between items-center z-50 fixed top-0 shadow-lg ${className}`}
     >
-      <Flex align="center" gap={20}>
-        <Button
-          icon={
-            <Icon
-              icon={"solar:hamburger-menu-broken"}
-              className="text-xl text-primary"
-            />
-          }
-          shape="circle"
-          className="md:hidden"
-        />
-        <img src={Logo} alt="" className="h-[20px]" />
-        <div className="hidden md:flex gap-5">
-          {NavMenu.map((dt, id) => {
-            if (Array.isArray(dt.route)) {
-              return (
-                <Dropdown key={`navMenuT${id}`} menu={{ items: dt.route }}>
+      {/* Logo Section */}
+      <div className="flex items-center gap-4">
+        <img src={Logo} alt="Logo" className="h-[30px]" />
+        <h1 className="text-white font-bold text-lg">SalesDirect</h1>
+      </div>
+
+      {/* Navigation Links */}
+      <ul className="hidden md:flex items-center gap-10">
+        {NavMenu.map((dt, id) => {
+          if (Array.isArray(dt.route)) {
+            return (
+              <li key={`navMenuT${id}`} className="relative group">
+                <Dropdown menu={{ items: dt.route }} trigger={["click"]}>
                   <a
                     onClick={(e) => e.preventDefault()}
-                    className={` py-1 flex justify-center items-center gap-2 ${
+                    className={`flex items-center gap-2 text-sm ${
                       pathname.startsWith("/category/")
-                        ? "border-b-2 border-white text-white hover:text-white"
-                        : "text-white/50 hover:text-white"
+                        ? "text-white border-b-2 border-white"
+                        : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {dt.name} <Icon icon={"solar:alt-arrow-down-broken"} />
                   </a>
                 </Dropdown>
-              );
-            } else {
-              return (
+              </li>
+            );
+          } else {
+            return (
+              <li key={`navMenuT${id}`}>
                 <NavLink
-                  key={`navMenuT${id}`}
                   to={dt.route}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-white py-1 relative hover:text-white border-b-2 border-white"
-                      : "text-white/50 hover:text-white py-1"
+                      ? "text-white border-b-2 border-white text-sm"
+                      : "text-gray-400 hover:text-white text-sm"
                   }
                 >
                   {dt.name}
                 </NavLink>
-              );
-            }
-          })}
-        </div>
-      </Flex>
+              </li>
+            );
+          }
+        })}
+      </ul>
 
-      <Flex align="center" gap={10}>
-        <div className="bg-white h-[35px] px-4 rounded-full flex justify-center items-center max-md:hidden">
-          <input type="text" className="w-[200px] outline-none text-[15px]" />
+      {/* Search Bar and Logout */}
+      <div className="flex items-center gap-4">
+        <div className="hidden md:flex bg-white h-[35px] px-3 rounded-full items-center">
+          <input
+            type="text"
+            className="bg-transparent text-gray-800 text-sm outline-none w-[200px]"
+            placeholder="Search..."
+          />
           <Icon icon={"solar:magnifer-linear"} />
         </div>
         <Button
@@ -106,7 +108,7 @@ export default function Navbar({ className }) {
           shape="circle"
           icon={<Icon icon={"solar:logout-broken"} className="text-xl" />}
         />
-      </Flex>
+      </div>
     </nav>
   );
 }
