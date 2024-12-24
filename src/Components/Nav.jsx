@@ -45,7 +45,7 @@ export default function Navbar({ className }) {
 
   return (
     <nav
-      className={`w-full bg-gray-800 px-6 py-4 flex justify-between items-center z-50 fixed top-0 shadow-lg ${className}`}
+      className={`w-full bg-amber-500 px-6 py-4 flex justify-between items-center z-50 fixed top-0 shadow-lg ${className}`}
     >
       {/* Logo Section */}
       <div className="flex items-center gap-4">
@@ -94,14 +94,6 @@ export default function Navbar({ className }) {
 
       {/* Search Bar and Logout */}
       <div className="flex items-center gap-4">
-        <div className="hidden md:flex bg-white h-[35px] px-3 rounded-full items-center">
-          <input
-            type="text"
-            className="bg-transparent text-gray-800 text-sm outline-none w-[200px]"
-            placeholder="Search..."
-          />
-          <Icon icon={"solar:magnifer-linear"} />
-        </div>
         <Button
           type="primary"
           onClick={() => LogoutController(navigate)}

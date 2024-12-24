@@ -51,7 +51,7 @@ export default function login() {
         alt=""
       />
       <div className="w-full h-screen flex justify-center items-center z-10 relative">
-        <div className="flex flex-col justify-center items-center p-8 bg-gray-800 rounded-lg shadow-lg to-transparent">
+        <div className="flex flex-col justify-center items-center p-8 bg-gray-800 rounded-lg shadow-lg">
           <img src={LoginCoder2} alt="Logo" className="h-14 mb-8" />
           <p className="text-white font-bold text-3xl text-center">
             Welcome, Sales Direct
@@ -75,7 +75,6 @@ export default function login() {
               typeInput={Psw ? "text" : "password"}
               icon={Psw ? "solar:eye-broken" : "solar:eye-closed-broken"}
               placeholder={"Password"}
-              active={true}
             />
             <Flex justify="space-between" align="center" className="mt-10">
               <Checkbox
@@ -89,7 +88,7 @@ export default function login() {
                 Forgot Password?
               </Link>
             </Flex>
-            <button className="w-full bg-white text-primary py-3 px-4 rounded-full mx-auto mt-10 flex justify-center items-center gap-1">
+            <button className="w-full bg-gray-600 text-black py-3 px-4 rounded-full mx-auto mt-10 flex justify-center items-center gap-1">
               <span className="text-lg font-semibold">Login</span>
               <Icon
                 icon={"material-symbols:arrow-right-alt-rounded"}

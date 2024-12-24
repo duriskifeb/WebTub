@@ -119,7 +119,7 @@ export default function Register() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-white text-primary py-3 px-4 rounded-full mx-auto mt-10 flex justify-center items-center gap-1"
+              className="w-full bg-gray-600 text-black py-3 px-4 rounded-full mx-auto mt-10 flex justify-center items-center gap-1"
             >
               <span className="text-lg font-semibold">Register</span>
               <Icon
