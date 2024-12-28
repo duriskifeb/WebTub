@@ -12,11 +12,12 @@ import Profile from "./Pages/Profile.jsx";
 import Page404 from "./Pages/Page404.jsx";
 import Category from "./Pages/category.jsx";
 import Article from "./Pages/article.jsx";
+import Aboute from "./Pages/Aboute.jsx";
 import Dashboard from "./Pages/Admin/Dashboard.jsx";
 import Index from "./Pages/Admin/Index.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <ConfigProvider theme={{ token: { colorPrimary: "#373660" } }}>
+  <ConfigProvider theme={{ token: { colorPrimary: "#01017d" } }}>
     <BrowserRouter>
       <Routes>
         <Route path="/">
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/Aboute" element={<Aboute />} />
           <Route path="/category/:uuid" element={<Category />} />
           <Route path="/article/:uuid" element={<Article />} />
           <Route path="*" element={<Page404 />} />

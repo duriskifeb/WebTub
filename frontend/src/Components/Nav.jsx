@@ -14,11 +14,9 @@ export default function Navbar({ className }) {
 
   let [NavMenu, setNavMenu] = useState([
     { name: "Home", route: "/" },
+    { name: "Aboute", route: "/Aboute" },
     { name: "Profile", route: "/profile" },
-    {
-      name: "Category",
-      route: [],
-    },
+    { name: "history", route: "/history" },
   ]);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export default function Navbar({ className }) {
 
   return (
     <nav
-      className={`w-full bg-amber-500 px-6 py-4 flex justify-between items-center z-50 fixed top-0 shadow-lg ${className}`}
+      className={`w-full bg-blue-800 px-6 py-4 flex justify-between items-center z-50 fixed top-0 shadow-lg ${className}`}
     >
       {/* Logo Section */}
       <div className="flex items-center gap-4">
@@ -81,7 +79,7 @@ export default function Navbar({ className }) {
                   className={({ isActive }) =>
                     isActive
                       ? "text-white border-b-2 border-white text-sm"
-                      : "text-gray-400 hover:text-white text-sm"
+                      : "text-black hover:text-white text-sm"
                   }
                 >
                   {dt.name}

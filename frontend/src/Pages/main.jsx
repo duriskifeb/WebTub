@@ -1,192 +1,190 @@
 import { Button, Carousel, Flex, Input, Space, Tag } from "antd";
 import Navbar from "../Components/Nav";
-import Imager from "../assets/imager.png";
+import Images from "../assets/About.png";
+import ImageSale from "../assets/sale.png";
+import image1 from "../assets/Baju1.png";
+import image2 from "../assets/Baju2.png";
+import image3 from "../assets/Baju3.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
 import Category from "../data/category.json";
 import FooterImage from "../assets/footer.png";
 import { Link } from "react-router";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 function CarouselEvent() {
-  let [Number, SetNumber] = useState(0);
-  let crl = useRef();
-
-  let DataCarousel = [
-    {
-      text: "Mavuika, Pyro Archon yang Bersejarah Akhirnya Hadir di Genshin Impact Versi 5.3",
-      tag: ["genshin", "update", "pyro"],
-      img: Imager,
-    },
-    {
-      text: "Beli Diamond Mobile Legends Jauh Lebih Murah Di Situs Itu",
-      tag: ["mobile-legends", "promo", "diamond"],
-      img: "https://en.moonton.com/upload/image/20221017/f43b62642a04d6e4998511b39f341515.jpg",
-    },
-    {
-      text: "Tantang Dirimu di Event Baru PUBG: Survivor of the Winter",
-      tag: ["pubg", "event", "winter"],
-      img: "https://t2.tudocdn.net/602246?w=1920&h=1440",
-    },
-    {
-      text: "Ragnarok Online: Classic Server Kini Resmi Dibuka!",
-      tag: ["ragnarok", "classic-server", "mmorpg"],
-      img: "https://cdn.mmoculture.com/mmo-images/2021/05/Ragnarok-Online-image-2021-1.png",
-    },
-    {
-      text: "Free Fire x Spider-Man: Kolaborasi Superhero yang Mengejutkan",
-      tag: ["free-fire", "spider-man", "crossover"],
-      img: "https://cdn.oneesports.id/cdn-data/sites/2/2023/05/348356621_805595360659654_1021246343238629982_n.jpg",
-    },
-  ];
+  let DataContent = {
+    text: "Sales Direct Products menampilkan produk baru di setiap harinya",
+    tag: ["Discount %", "12.12", "FREE🔥"],
+    img: ImageSale,
+  };
 
   return (
     <>
-      <div className="w-full h-[550px] relative pt-5 overflow-hidden bg-primary">
+      <div className="w-full h-[705px] relative pt-5 overflow-hidden bg-primary">
         <Navbar />
         <div className="absolute top-0 left-0 w-full h-full z-[1] bg-gradient-to-r from-secondary sm:from-20% to-transparent" />
-        {DataCarousel.map((dt, id) => {
-          return (
-            <img
-              key={DataCarousel + id + "image"}
-              src={dt.img}
-              alt=""
-              className={`absolute w-full h-full object-cover object-center ${
-                id == Number ? "bottom-0" : "-bottom-full"
-              } transition-all duration-300 ease-in-out`}
-            />
-          );
-        })}
-        <div className="relative">
-          <Carousel
-            infinite
-            afterChange={(x) => SetNumber(x)}
-            beforeChange={(x) => SetNumber(x)}
-            ref={crl}
-            style={{
-              height: 400,
-              zIndex: 5,
-              position: "relative",
-              marginTop: 20,
-            }}
-            className="w-11/12 mx-auto overflow-hidden"
+        <img
+          src={DataContent.img}
+          alt=""
+          className="absolute w-full h-full object-cover object-center opacity-30"
+        />
+        <div className="relative flex flex-col justify-center items-start w-1/2 h-full z-[5] text-white px-10">
+          <h1 className="text-4xl font-bold mb-4 leading-tight">
+            {DataContent.text}
+          </h1>
+          <div className="flex flex-wrap gap-4 mb-6">
+            {DataContent.tag.map((tag, index) => (
+              <div
+                key={`tag-${index}`}
+                className="py-1 px-4 rounded border border-white"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+          <p className="text-lg mb-6">
+            Discover the latest update in Genshin Impact, featuring the historic
+            Pyro Archon. Dive into the new adventures and challenges awaiting in
+            version 5.3!
+          </p>
+          <button
+            className="py-2 px-6 bg-red-500 text-white rounded font-semibold flex items-center gap-2 hover:bg-red-600 active:scale-95 transition-all group"
+            onClick={() => alert("Learn More Clicked")}
           >
-            {DataCarousel.map((dt, idm) => {
-              return (
-                <div key={`DataCarousel${idm}`} className="h-[350px]">
-                  <div className="w-10/12 sm:w-[300px] flex flex-col justify-center h-full">
-                    <p className="text-2xl font-semibold text-white">
-                      {dt.text}
-                    </p>
-                    <Flex wrap gap={10} className="mt-5">
-                      {dt.tag.map((mx, idp) => {
-                        return (
-                          <div
-                            className="py-0.5 px-4 rounded text-white border border-white"
-                            key={`idLx${idm}${idp}`}
-                          >
-                            {mx}
-                          </div>
-                        );
-                      })}
-                    </Flex>
-                  </div>
-                </div>
-              );
-            })}
-          </Carousel>
-          <Button
-            onClick={() => crl.current.next()}
-            className="absolute right-5 z-20 top-1/2 -translate-y-1/2"
-            shape="circle"
-            icon={
-              <Icon
-                icon={"solar:alt-arrow-right-broken"}
-                className="text-2xl text-primary"
-              />
-            }
-          />
+            Learn More
+            <FaArrowRight className="text-white transform transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
         </div>
       </div>
     </>
   );
 }
 
-function CategoryList() {
-  let [Data, SetData] = useState();
-
-  function chunkArray(array, size) {
-    const result = [];
-    for (let i = 0; i < array.length; i += size) {
-      result.push(array.slice(i, i + size));
-    }
-    return result;
-  }
-
-  useEffect(() => {
-    SetData(chunkArray(Category, 4));
-  }, []);
-
+function AboutMe() {
   return (
-    <div className="w-11/12 md:max-w-[950px] mx-auto my-20 ">
-      <p className="text-xl font-semibold text-white mb-8">
-        Browse By Category
-      </p>
-      <Carousel arrows dots={false}>
-        {Data?.map((dt, id) => {
-          return (
-            <div className="px-8 md:px-14">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
-                {dt.map((dp, it) => {
-                  return (
-                    <Link
-                      to={`/category/${dp.uuid}`}
-                      className="bg-secondary border-2 rounded-xl border-white p-3 aspect-square flex flex-col gap-4 justify-center items-center group hover:bg-white cursor-pointer transition-all"
-                    >
-                      <Icon
-                        icon={dp.icon ?? "game-icons:ghost"}
-                        className="text-7xl md:text-8xl block mx-auto text-white group-hover:text-primary"
-                      />
-                      <p className="bg-white text-secondary font-semibold rounded-xl max-md:text-xs py-2 px-4 text-center w-11/12 group-hover:bg-secondary group-hover:text-white">
-                        {dp.name}
-                      </p>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </Carousel>
+    <div className="w-11/12 md:max-w-[950px] mx-auto my-20 flex flex-col md:flex-row items-center gap-10 mt-20">
+      {/* Left Side: Image */}
+      <div className="w-full md:w-1/2">
+        <img
+          src={Images}
+          alt="About Us"
+          className="w-full rounded-lg shadow-lg"
+        />
+      </div>
+
+      {/* Right Side: Text */}
+      <div className="w-full md:w-1/2">
+        <h2 className="text-3xl font-bold text-white mb-4">
+          About Sales Direct
+        </h2>
+        <p className="text-lg text-white/80 leading-relaxed mb-4">
+          WAOW is a platform designed to provide an exceptional experience,
+          combining creativity and functionality in every element.
+        </p>
+        <p className="text-lg text-white/80 leading-relaxed">
+          Discover diverse features and categories curated for your needs. From
+          intuitive navigation to engaging visuals, WAOW is your destination for
+          inspiration and innovation.
+        </p>
+      </div>
     </div>
   );
 }
 
-function VideoContext() {
+// function CategoryList() {
+//   let [Data, SetData] = useState();
+
+//   function chunkArray(array, size) {
+//     const result = [];
+//     for (let i = 0; i < array.length; i += size) {
+//       result.push(array.slice(i, i + size));
+//     }
+//     return result;
+//   }
+
+//   useEffect(() => {
+//     SetData(chunkArray(Category, 4));
+//   }, []);
+
+//   return (
+//     <div className="w-11/12 md:max-w-[950px] mx-auto my-20 ">
+//       <p className="text-xl font-semibold text-white mb-8">
+//         Browse By Category
+//       </p>
+//       <Carousel arrows dots={false}>
+//         {Data?.map((dt, id) => {
+//           return (
+//             <div className="px-8 md:px-14">
+//               <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
+//                 {dt.map((dp, it) => {
+//                   return (
+//                     <Link
+//                       to={`/category/${dp.uuid}`}
+//                       className="bg-secondary border-2 rounded-xl border-white p-3 aspect-square flex flex-col gap-4 justify-center items-center group hover:bg-white cursor-pointer transition-all"
+//                     >
+//                       <Icon
+//                         icon={dp.icon ?? "game-icons:ghost"}
+//                         className="text-7xl md:text-8xl block mx-auto text-white group-hover:text-primary"
+//                       />
+//                       <p className="bg-white text-secondary font-semibold rounded-xl max-md:text-xs py-2 px-4 text-center w-11/12 group-hover:bg-secondary group-hover:text-white">
+//                         {dp.name}
+//                       </p>
+//                     </Link>
+//                   );
+//                 })}
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </Carousel>
+//     </div>
+//   );
+// }
+
+function ListContext() {
   let data = [
     {
       title: "FFWS ID 2024 SPRING - GRAND FINALS",
-      image:
-        "https://row.haluan.co/wp-content/uploads/2023/09/free-fire-1-3.jpg",
+      image: image1,
       created_at: "12 Dec 2024",
-      author: "Garena Free Fire",
-      youtube: "https://www.youtube.com/live/6VEZ0nCIHdE?si=BpumAk6cwYH_Fd48",
+      author: "Bukalapak",
     },
     {
       title:
         "Unite for 11/11 | Double 11 Event Overview | Mobile Legends: Bang Bang",
-      image: "https://i.ytimg.com/vi/P1daGWJ8u9k/maxresdefault.jpg",
+      image: image2,
       created_at: "12 Dec 2024",
-      author: "Mobile Legends",
-      youtube: "https://youtu.be/P1daGWJ8u9k?si=eeI2GatPSeMDeH6w",
+      author: "Tokopedia",
     },
     {
       title:
         "PUBG MOBILE | Kolaborasi Ransel Eksklusif American Tourister Resmi Dirilis",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkX5zvuFT7SU5OmVRg4ntM1pGm87QawG9DCQ&s",
+      image: image3,
       created_at: "12 Dec 2024",
-      author: "PUBG Mobile",
-      youtube: "https://youtu.be/rAFb1WPu9fQ",
+      author: "Shopee",
+    },
+    {
+      title:
+        "PUBG MOBILE | Kolaborasi Ransel Eksklusif American Tourister Resmi Dirilis",
+      image: image3,
+      created_at: "12 Dec 2024",
+      author: "Shopee",
+    },
+    {
+      title:
+        "PUBG MOBILE | Kolaborasi Ransel Eksklusif American Tourister Resmi Dirilis",
+      image: image3,
+      created_at: "12 Dec 2024",
+      author: "Shopee",
+    },
+    {
+      title:
+        "PUBG MOBILE | Kolaborasi Ransel Eksklusif American Tourister Resmi Dirilis",
+      image: image3,
+      created_at: "12 Dec 2024",
+      author: "Shopee",
     },
   ];
 
@@ -194,20 +192,11 @@ function VideoContext() {
     <div className="grid md:grid-cols-3 gap-10 my-20 w-10/12 mx-auto">
       {data.map((dt, id) => {
         return (
-          <a
-            href={dt.youtube}
-            target="_blank"
-            className="bg-primary p-5 rounded-xl shadow-md"
+          <div
+            className="bg-zinc-950 p-5 rounded-xl shadow-md"
             key={`data${id}`}
           >
             <div className="relative">
-              <Flex
-                justify="center"
-                align="center"
-                className="w-10 h-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/20 rounded-full backdrop-blur"
-              >
-                <Icon icon={"solar:play-bold"} className="text-white text-xl" />
-              </Flex>
               <img
                 src={dt.image}
                 alt=""
@@ -215,11 +204,11 @@ function VideoContext() {
               />
             </div>
             <p className="my-3 text-white font-semibold">{dt.title}</p>
-            <Flex gap={10} className="text-xs mt-3">
+            <div className="flex gap-10 text-xs mt-3">
               <p className="text-white">{dt.author}</p>
               <p className="text-white/50">{dt.created_at}</p>
-            </Flex>
-          </a>
+            </div>
+          </div>
         );
       })}
     </div>
@@ -281,13 +270,108 @@ export function FooterContext() {
   );
 }
 
+export function Footers() {
+  return (
+    <footer className="bg-gray-100 p-6 text-gray-600">
+      <div className="container mx-auto flex flex-col items-center">
+        <div className="flex flex-row justify-between w-full">
+          <div className="flex flex-col space-y-4">
+            <h3 className="font-bold text-3xl">Direct Sales</h3>
+            <p className="text-sm">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
+              Eos, aliquam ut incidunt veniam tempora <br /> eveniet possimus
+              illo quos veritatis rem sed, temporibus rerum odio obcaecati!
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="hover:text-blue-500">
+                <FaFacebook />
+              </a>
+              <a href="#" className="hover:text-blue-400">
+                <FaTwitter />
+              </a>
+              <a href="#" className="hover:text-pink-500">
+                <FaInstagram />
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4 ml-10">
+            <h3 className="font-bold text-lg">About</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="hover:underline">
+                  Partnership
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Terms of Use
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col space-y-4 ml-10">
+            <h3 className="font-bold text-lg">Product</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="hover:underline">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Support
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col space-y-4 ml-10">
+            <h3 className="font-bold text-lg">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="hover:underline">
+                  Career
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Legal
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-6 text-center">
+          <p className="text-sm">© 2023 AR Fashion. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function () {
   return (
     <>
       <CarouselEvent />
-      <CategoryList />
-      <VideoContext />
-      <FooterContext />
+      <AboutMe />
+      {/* <CategoryList /> */}
+      <ListContext />
+      {/* <FooterContext /> */}
+      <Footers />
     </>
   );
 }
