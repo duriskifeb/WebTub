@@ -3,7 +3,7 @@ import Navbar from "../Components/Nav";
 import FooterImage from "../assets/footer.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-export default function Aboute() {
+function Aboute() {
   let teamsMembers = [
     {
       name: "Muhammad",
